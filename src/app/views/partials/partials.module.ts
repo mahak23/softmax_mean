@@ -26,11 +26,11 @@ import {
 	MatTooltipModule,
 } from '@angular/material';
 // NgBootstrap
-import {NgbDropdownModule, NgbTabsetModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // Perfect Scrollbar
-import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 // Core module
-import {CoreModule} from '../../core/core.module';
+import { CoreModule } from '../../core/core.module';
 // CRUD Partials
 import {
 	ActionNotificationComponent,
@@ -43,36 +43,21 @@ import {
 import {
 	ContextMenu2Component,
 	ContextMenuComponent,
-	LanguageSelectorComponent,
 	NotificationComponent,
-	QuickActionComponent,
-	QuickPanelComponent,
 	ScrollTopComponent,
-	SearchDefaultComponent,
-	SearchDropdownComponent,
-	SearchResultComponent,
 	SplashScreenComponent,
-	StickyToolbarComponent,
 	Subheader1Component,
-	Subheader2Component,
-	Subheader3Component,
-	Subheader4Component,
-	Subheader5Component,
-	SubheaderSearchComponent,
-	UserProfile2Component,
-	UserProfile3Component,
 	UserProfileComponent,
 } from './layout';
 // General
-import {NoticeComponent} from './content/general/notice/notice.component';
-import {PortletModule} from './content/general/portlet/portlet.module';
+import { NoticeComponent } from './content/general/notice/notice.component';
+import { PortletModule } from './content/general/portlet/portlet.module';
 // Errpr
-import {ErrorComponent} from './content/general/error/error.component';
+import { ErrorComponent } from './content/general/error/error.component';
 // Extra module
-import {WidgetModule} from './content/widgets/widget.module';
+import { WidgetModule } from './content/widgets/widget.module';
 // SVG inline
-import {InlineSVGModule} from 'ng-inline-svg';
-import {CartComponent} from './layout/topbar/cart/cart.component';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @NgModule({
 	declarations: [
@@ -87,26 +72,11 @@ import {CartComponent} from './layout/topbar/cart/cart.component';
 		// topbar components
 		ContextMenu2Component,
 		ContextMenuComponent,
-		QuickPanelComponent,
 		ScrollTopComponent,
-		SearchResultComponent,
 		SplashScreenComponent,
-		StickyToolbarComponent,
 		Subheader1Component,
-		Subheader2Component,
-		Subheader3Component,
-		Subheader4Component,
-		Subheader5Component,
-		SubheaderSearchComponent,
-		LanguageSelectorComponent,
 		NotificationComponent,
-		QuickActionComponent,
-		SearchDefaultComponent,
-		SearchDropdownComponent,
 		UserProfileComponent,
-		UserProfile2Component,
-		UserProfile3Component,
-		CartComponent,
 
 		ErrorComponent,
 	],
@@ -125,27 +95,11 @@ import {CartComponent} from './layout/topbar/cart/cart.component';
 		// topbar components
 		ContextMenu2Component,
 		ContextMenuComponent,
-		QuickPanelComponent,
 		ScrollTopComponent,
-		SearchResultComponent,
 		SplashScreenComponent,
-		StickyToolbarComponent,
 		Subheader1Component,
-		Subheader2Component,
-		Subheader3Component,
-		Subheader4Component,
-		Subheader5Component,
-		SubheaderSearchComponent,
-		LanguageSelectorComponent,
 		NotificationComponent,
-		QuickActionComponent,
-		SearchDefaultComponent,
-		SearchDropdownComponent,
 		UserProfileComponent,
-		UserProfile2Component,
-		UserProfile3Component,
-		CartComponent,
-
 		ErrorComponent,
 	],
 	imports: [
