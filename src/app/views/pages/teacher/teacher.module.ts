@@ -4,16 +4,25 @@ import { CommonModule } from '@angular/common';
 // Core Module
 import { CoreModule } from '../../../core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
-import { NoticeComponent } from './notice/notice.component';
 import { TeacherRoutingModule } from './teacher-routing.module';
+import { MatButtonModule, MatIconModule, MatPaginatorModule, MatTableModule, MatTooltipModule } from '@angular/material';
+import { NoticeModule } from './notice/notice.module';
+import { HomeworkModule } from './homework/homework.module';
 
 @NgModule({
-  declarations: [NoticeComponent],
+  declarations: [],
   imports: [
     CommonModule,
     CoreModule,
     PartialsModule,
-    TeacherRoutingModule
+    TeacherRoutingModule,
+    // MatTableModule,
+    // MatTooltipModule,
+    // MatIconModule,
+    // MatButtonModule,
+    // MatPaginatorModule,
+    NoticeModule,
+    HomeworkModule,
   ]
 })
 export class TeacherModule { }
