@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { NoticeService } from '../notice.service';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'kt-notice',
   templateUrl: './notice.component.html',
@@ -42,6 +42,24 @@ export class NoticeListingComponent implements OnInit {
 
   deleteNotice(noticeId) {
     console.log(noticeId)
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this notice!",
+      type: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true     
+    })
+    .then((willDelete) => {
+
+        if(willDelete.value){
+             swal("Success");
+        }else{
+          swal("Fail");
+        }
+
+      console.log(willDelete)
+    });
+    
   }
 
 }
