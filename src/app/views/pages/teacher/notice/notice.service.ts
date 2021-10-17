@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class NoticeService {
 
-  public endPoint = "http://localhost:8000/api";
+  public endPoint = "http://localhost:8000/api/teacher";
   constructor(private http: HttpClient) { }
 
   getNotices() {

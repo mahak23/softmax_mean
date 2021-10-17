@@ -11,7 +11,14 @@ export class NoticeListingComponent implements OnInit {
 
   constructor(private noticeService: NoticeService) { }
   dataSource = new MatTableDataSource<[]>();
-  displayedColumns: string[] = ['sr_no', 'notice', 'created_at', 'action'];
+  displayedColumns: string[] = [
+    'sr_no', 'notice', 'created_at', 'added_by', 'action'
+  ];
+  pageData = {
+    current_page: 1,
+    total: 0,
+    per_page: 20,
+  };
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -29,8 +36,15 @@ export class NoticeListingComponent implements OnInit {
 
   getNotices() {
     this.noticeService.getNotices().subscribe((response: any) => {
-      console.log("Here", response.data.notices.data);
       this.dataSource.data = response.data.notices.data;
+      this.pageData = {
+        per_page: response.data.notices.per_page,
+        current_page: response.data.notices.current_page,
+        total: response.data.notices.total,
+      };
+
+      console.log(this.pageData, "Page data");
+
     }, (error) => {
       console.log(error);
     });
@@ -44,4 +58,7 @@ export class NoticeListingComponent implements OnInit {
     console.log(noticeId)
   }
 
+  onPageChange(event) {
+    console.log(event, "Eve");
+  }
 }
