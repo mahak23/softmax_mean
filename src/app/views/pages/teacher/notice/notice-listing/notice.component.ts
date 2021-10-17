@@ -12,7 +12,7 @@ export class NoticeListingComponent implements OnInit {
   constructor(private noticeService: NoticeService) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
-    'sr_no', 'notice', 'created_at', 'added_by', 'action'
+    'sr_no', 'notice', 'created_at', 'added_by','is_shown', 'action'
   ];
   pageData = {
     current_page: 1,
@@ -55,7 +55,6 @@ export class NoticeListingComponent implements OnInit {
   }
 
   deleteNotice(noticeId) {
-    console.log(noticeId)
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this notice!",
@@ -66,12 +65,19 @@ export class NoticeListingComponent implements OnInit {
     .then((willDelete) => {
 
         if(willDelete.value){
-             swal("Success");
+          this.noticeService.deleteNotice(noticeId).subscribe((response: any) => {
+            swal("Successfully deleted!");
+            this.getNotices()
+      
+          }, (error) => {
+            console.log(error);
+          });
+            
         }else{
-          swal("Fail");
+          swal("Fail,Try again!");
         }
 
-      console.log(willDelete)
+    
     });
     
   }

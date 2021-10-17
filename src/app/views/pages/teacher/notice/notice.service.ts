@@ -5,15 +5,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NoticeService {
-
+public token;
   public endPoint = "http://localhost:8000/api/teacher";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.token = localStorage.getItem('token');
+  }
 
   getNotices() {
-    let token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/notices', {
       headers: {
-        Authorization: 'Bearer ' + token
+        Authorization: 'Bearer ' + this.token
+      }
+    });
+  }
+
+  deleteNotice(id) {
+    return this.http.delete(this.endPoint + '/notices/'+id, {
+      headers: {
+        Authorization: 'Bearer ' + this.token
       }
     });
   }
