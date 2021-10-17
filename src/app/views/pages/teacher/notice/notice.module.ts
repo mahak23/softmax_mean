@@ -5,8 +5,9 @@ import { NoticeListingComponent } from './notice-listing/notice.component';
 import { NoticeService } from './notice.service';
 import { CoreModule } from '../../../../core/core.module';
 import { PartialsModule } from '../../../partials/partials.module';
-import { MatButtonModule, MatIconModule, MatPaginatorModule, MatTableModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSlideToggleModule, MatTableModule, MatTooltipModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [NoticeCreateComponent, NoticeListingComponent],
@@ -20,6 +21,11 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatPaginatorModule,
     RouterModule,
+    MatSlideToggleModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatInputModule,
   ],
   exports: [NoticeCreateComponent, NoticeListingComponent],
   providers: [NoticeService]

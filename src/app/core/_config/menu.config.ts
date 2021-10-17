@@ -20,8 +20,8 @@ export class MenuConfig {
 					title: 'Notice',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
-					page: '/teacher/notice',
-					translate: 'MENU.NOTICE',
+					page: '/teacher/notices',
+					translate: 'Manage Notices',
 					bullet: 'dot',
 				},
 			]

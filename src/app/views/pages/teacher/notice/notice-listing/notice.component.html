@@ -33,12 +33,11 @@
                     </ng-container>
                     <ng-container matColumnDef="is_shown">
                         <mat-header-cell *matHeaderCellDef> Is Shown </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> <input type="checkbox" class="form-check-input" [checked]="'element.user.is_shown==1' ? 'true' : 'false'" id="exampleCheck1"
-                     >
-                                
+                        <mat-cell *matCellDef="let element">
+                            <mat-slide-toggle [checked]="element.is_shown==1 ? 'true' : 'false'"
+                                (change)="changeNoticeStatus($event, element.id)"></mat-slide-toggle>
                         </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -57,7 +56,7 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                 </mat-table>
                 <mat-paginator #paginator [length]="pageData.total" [pageSize]="pageData.per_page"
-                    [showFirstLastButtons]="true" [hidePageSize]="true" (page)="onPageChange(e)">
+                    (page)="onPageChange($event)">
                 </mat-paginator>
             </kt-portlet-body>
         </kt-portlet>

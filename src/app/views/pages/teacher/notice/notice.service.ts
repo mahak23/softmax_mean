@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from '../../../../../environments/environment'
+import { environment } from '../../../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoticeService {
-public token;
+  public token;
   public endPoint = environment.api_url;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token');
   }
 
-  getNotices() {
-    return this.http.get(this.endPoint + '/notices', {
+  getNotices(page) {
+    return this.http.get(this.endPoint + '/notices?page=' + page, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
@@ -21,7 +21,7 @@ public token;
   }
 
   deleteNotice(id) {
-    return this.http.delete(this.endPoint + '/notices/'+id, {
+    return this.http.delete(this.endPoint + '/notices/' + id, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }

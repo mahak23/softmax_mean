@@ -12,10 +12,10 @@ export class NoticeListingComponent implements OnInit {
   constructor(private noticeService: NoticeService) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
-    'sr_no', 'notice', 'created_at', 'added_by','is_shown', 'action'
+    'sr_no', 'notice', 'added_by', 'is_shown', 'created_at', 'action'
   ];
   pageData = {
-    current_page: 1,
+    current_page: 0,
     total: 0,
     per_page: 20,
   };
@@ -31,20 +31,18 @@ export class NoticeListingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getNotices();
+    this.getNotices(1);
   }
 
-  getNotices() {
-    this.noticeService.getNotices().subscribe((response: any) => {
+  getNotices(page = 1) {
+    this.noticeService.getNotices(page).subscribe((response: any) => {
       this.dataSource.data = response.data.notices.data;
       this.pageData = {
         per_page: response.data.notices.per_page,
-        current_page: response.data.notices.current_page,
+        current_page: response.data.notices.current_page - 1,
         total: response.data.notices.total,
       };
-
       console.log(this.pageData, "Page data");
-
     }, (error) => {
       console.log(error);
     });
@@ -54,35 +52,32 @@ export class NoticeListingComponent implements OnInit {
     console.log(noticeId)
   }
 
+  changeNoticeStatus(event, noticeId) {
+    console.log(event, noticeId)
+  }
+
   deleteNotice(noticeId) {
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this notice!",
       type: 'warning',
       showConfirmButton: true,
-      showCancelButton: true     
+      showCancelButton: true
     })
-    .then((willDelete) => {
-
-        if(willDelete.value){
+      .then((willDelete) => {
+        if (willDelete.value) {
           this.noticeService.deleteNotice(noticeId).subscribe((response: any) => {
             swal("Successfully deleted!");
-            this.getNotices()
-      
+            this.getNotices(1);
           }, (error) => {
             console.log(error);
           });
-            
-        }else{
-          swal("Fail,Try again!");
         }
-
-    
-    });
-    
+      });
   }
 
   onPageChange(event) {
-    console.log(event, "Eve");
+    let page = event.pageIndex + 1;
+    this.getNotices(page);
   }
 }
