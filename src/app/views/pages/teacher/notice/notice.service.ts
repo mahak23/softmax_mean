@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {environment} from '../../../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoticeService {
 public token;
-  public endPoint = "http://localhost:8000/api/teacher";
+  public endPoint = environment.api_url;
   constructor(private http: HttpClient) { 
     this.token = localStorage.getItem('token');
   }
