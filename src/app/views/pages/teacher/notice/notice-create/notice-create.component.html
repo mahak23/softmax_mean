@@ -7,8 +7,11 @@
                         <span class="kt-portlet__head-icon kt-hide">
                             <i class="la la-gear"></i>
                         </span>
-                        <h3 class="kt-portlet__head-text">
+                        <h3 *ngIf="!noticeId" class="kt-portlet__head-text">
                             Add Notice
+                        </h3>
+                        <h3 *ngIf="noticeId" class="kt-portlet__head-text">
+                            Edit Notice
                         </h3>
                     </div>
                 </div>

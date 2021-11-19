@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { NoticeService } from '../notice.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'kt-notice',
   templateUrl: './notice.component.html',
@@ -9,7 +10,7 @@ import swal from 'sweetalert2';
 })
 export class NoticeListingComponent implements OnInit {
 
-  constructor(private noticeService: NoticeService) { }
+  constructor(private noticeService: NoticeService,private router:Router) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
     'sr_no', 'notice', 'added_by', 'is_shown', 'created_at', 'action'
@@ -50,6 +51,7 @@ export class NoticeListingComponent implements OnInit {
 
   editNotice(noticeId) {
     console.log(noticeId)
+    this.router.navigate(['/teacher/notices/edit/', noticeId]);
   }
 
   changeNoticeStatus(event, noticeId) {

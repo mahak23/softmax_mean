@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NoticeService } from '../notice.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'kt-notice-create',
   templateUrl: './notice-create.component.html',
@@ -13,8 +13,11 @@ export class NoticeCreateComponent implements OnInit {
   noticeForm: FormGroup;
   errors = [];
   loading = false;
-
-  constructor(private fb: FormBuilder, private route: Router, private noticeService: NoticeService) {
+  noticeId;
+  noticeData;
+  constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private route: Router,private router: ActivatedRoute, private noticeService: NoticeService) {
+   this.noticeId=this.router.snapshot.params.id
+    //console.log(this.router.snapshot.params.id);
     this.noticeForm = fb.group({
       description: ['', [Validators.required, Validators.minLength(2)]],
       is_shown: [false],
@@ -22,38 +25,62 @@ export class NoticeCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.noticeId){
+      this.getNotice();
+    }
+  }
+
+  getNotice(){
+    this.noticeService.getNoticeById(this.noticeId).subscribe((response: any) => {
+      console.log(response, "Notice data");
+    this.noticeForm.setValue({
+      description: response.data.notice.description,
+      is_shown: response.data.notice.is_shown
+    });
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   submitForm() {
-    const controls = this.noticeForm.controls;
+     const controls = this.noticeForm.controls;
 
-    /** check form */
-    if (this.noticeForm.invalid) {
+     if (this.noticeForm.invalid) {
       Object.keys(controls).forEach(controlName =>
         controls[controlName].markAsTouched()
       );
       return;
     }
 
-    this.loading = true;
-    this.noticeService
-      .login(authData)
-      .subscribe((response) => {
-        this.loading = false;
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
-        this.router.navigate(['/dashboard']); // Main page
+    if(!this.noticeId) {
+      this.noticeService
+      .addNotice(this.noticeForm.value)
+      .subscribe((response:any) => {
+        this._snackBar.open(response.message, 'X');
+        this.route.navigate(['/teacher/notices']); // Main page
       }, (error) => {
-        this.loading = false;
-
         // Validation
         if (error.status == 422) {
           this.errors = error.error.errors;
         } else {
-          // Other errors
-          this.authNoticeService.setNotice(error.error.message, 'danger');
+          this._snackBar.open(error.error.message, 'X');
         }
       });
+    } else {
+      this.noticeService
+      .updateNotice(this.noticeId, this.noticeForm.value)
+      .subscribe((response:any) => {
+        this._snackBar.open(response.message, 'X');
+        this.route.navigate(['/teacher/notices']); // Main page
+      }, (error) => {
+        // Validation
+        if (error.status == 422) {
+          this.errors = error.error.errors;
+        } else {
+          this._snackBar.open(error.error.message, 'X');
+        }
+      });
+    }
   }
 
   back() {

@@ -12,8 +12,8 @@ export class MenuConfig {
 					title: 'Dashboard',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
-					page: '/dashboard',
-					translate: 'MENU.DASHBOARD',
+					page: '/teacher/dashboard',
+					translate: 'Dashboard',
 					bullet: 'dot',
 				},
 				{
@@ -22,6 +22,14 @@ export class MenuConfig {
 					icon: 'flaticon2-architecture-and-city',
 					page: '/teacher/notices',
 					translate: 'Manage Notices',
+					bullet: 'dot',
+				},
+				{
+					title: 'Homework',
+					root: true,
+					icon: 'flaticon2-architecture-and-city',
+					page: '/teacher/homeworks',
+					translate: 'Manage Homeworks',
 					bullet: 'dot',
 				},
 			]

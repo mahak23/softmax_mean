@@ -5,9 +5,9 @@ import { CommonModule } from '@angular/common';
 import { CoreModule } from '../../../core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
 import { TeacherRoutingModule } from './teacher-routing.module';
-import { MatButtonModule, MatIconModule, MatPaginatorModule, MatTableModule, MatTooltipModule } from '@angular/material';
 import { NoticeModule } from './notice/notice.module';
 import { HomeworkModule } from './homework/homework.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [],
@@ -16,13 +16,9 @@ import { HomeworkModule } from './homework/homework.module';
     CoreModule,
     PartialsModule,
     TeacherRoutingModule,
-    // MatTableModule,
-    // MatTooltipModule,
-    // MatIconModule,
-    // MatButtonModule,
-    // MatPaginatorModule,
     NoticeModule,
     HomeworkModule,
+    DashboardModule
   ]
 })
 export class TeacherModule { }

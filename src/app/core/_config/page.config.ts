@@ -6,10 +6,10 @@ export class PageConfig {
 				desc: 'Latest updates and statistic charts'
 			},
 		},
-		demo: {
+		'teacher/notices': {
 			page: {
-				title: 'Notice',
-				desc: 'Latest updates and statistic charts'
+				title: 'Notices',
+				desc: 'Manage your notices'
 			},
 		},
 		error: {
