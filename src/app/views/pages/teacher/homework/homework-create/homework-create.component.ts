@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,11 +15,12 @@ export class HomeworkCreateComponent implements OnInit {
   errors = [];
   homeworkId;
   classes = [];
-  fileID = "";
+  templates = []
+  file;
+  fileUploaded = false;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private route: Router, private router: ActivatedRoute, private homeworkService: HomeworkService) {
+  constructor(private datePipe: DatePipe, private fb: FormBuilder, private _snackBar: MatSnackBar, private route: Router, private router: ActivatedRoute, private homeworkService: HomeworkService, private ref: ChangeDetectorRef) {
     this.homeworkId = this.router.snapshot.params.id
-    //console.log(this.router.snapshot.params.id);
     this.homeworkForm = fb.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
       date: ['', [Validators.required]],
@@ -29,10 +31,9 @@ export class HomeworkCreateComponent implements OnInit {
     });
   }
 
-  file;
-
   ngOnInit() {
     this.getClasses();
+    this.getTemplates()
     if (this.homeworkId) {
       this.gethomework();
     }
@@ -40,22 +41,51 @@ export class HomeworkCreateComponent implements OnInit {
 
   getClasses() {
     this.homeworkService.getClasses().subscribe((response: any) => {
-      console.log(response);
       this.classes = response.data.classes;
     }, (error) => {
-      console.log(error);
+      // Validation
+      if (error.status == 422) {
+        this.errors = error.error.errors;
+      } else {
+        this._snackBar.open(error.error.message, 'X');
+      }
     });
+  }
 
+  getTemplates() {
+    this.homeworkService.getTemplates().subscribe((response: any) => {
+      this.templates = response.data.templates;
+    }, (error) => {
+      // Validation
+      if (error.status == 422) {
+        this.errors = error.error.errors;
+      } else {
+        this._snackBar.open(error.error.message, 'X');
+      }
+    });
   }
 
   gethomework() {
     this.homeworkService.gethomeworkById(this.homeworkId).subscribe((response: any) => {
+      let data = response.data.homework;
+      console.log("My data", data);
       this.homeworkForm.setValue({
-        description: response.data.homework.description,
-        is_shown: response.data.homework.is_shown
+        homework: data.homework,
+        title: data.title,
+        class_id: data.class_id,
+        template_id: data.template_id,
+        date: data.date,
+        youtube_id: data.youtube_id,
       });
+      this.file = data.file;
+      this.fileUploaded = true;
     }, (error) => {
-      console.log(error);
+      // Validation
+      if (error.status == 422) {
+        this.errors = error.error.errors;
+      } else {
+        this._snackBar.open(error.error.message, 'X');
+      }
     });
   }
 
@@ -70,7 +100,9 @@ export class HomeworkCreateComponent implements OnInit {
     }
 
     let data = this.homeworkForm.value;
-    data.file_id = this.fileID;
+    data.file_id = this.file.id;
+    data.date = this.datePipe.transform(data.date, "y-MM-d");
+    console.log(data);
 
     if (!this.homeworkId) {
       this.homeworkService
@@ -143,9 +175,10 @@ export class HomeworkCreateComponent implements OnInit {
       this.homeworkService
         .uploadImage(formData)
         .subscribe((res: any) => {
+          this.file = res.data.file;
+          this.fileUploaded = true;
+          this.ref.markForCheck();
           this._snackBar.open(res.message, 'X');
-          console.log(res);
-          this.fileID = res.data.file.id;
         },
           (error) => {
             // Validation

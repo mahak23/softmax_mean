@@ -1,12 +1,14 @@
 <!-- BEGIN: Left Aside -->
-<div ktOffcanvas [options]="menuCanvasOptions" class="kt-aside kt-aside--fixed kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+<div ktOffcanvas [options]="menuCanvasOptions"
+	class="kt-aside kt-aside--fixed kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
 	<!-- begin:: Brand -->
 	<kt-brand></kt-brand>
 	<!-- end:: Brand -->
 
 	<!-- BEGIN: Aside Menu -->
 	<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
-		<div #asideMenu ktMenu [options]="menuOptions" [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '100vh', 'position': 'relative'}" id="kt_aside_menu" class="kt-aside-menu"
+		<div #asideMenu ktMenu [options]="menuOptions" [perfectScrollbar]="{wheelPropagation: false}"
+			[ngStyle]="{'max-height': '100vh', 'position': 'relative'}" id="kt_aside_menu" class="kt-aside-menu"
 			(mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)"
 			[ngClass]="htmlClassService.getClasses('aside_menu', true)">
 			<ul class="kt-menu__nav" [ngClass]="htmlClassService.getClasses('aside_menu_nav', true)">
@@ -30,15 +32,16 @@
 </ng-template>
 
 <ng-template #menuItemTemplate let-item="item" let-parentItem="parentItem">
-	<ng-container *ngIf="!item.permission" [ngTemplateOutlet]="menuItemInnerTemplate" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem  }"></ng-container>
+	<ng-container *ngIf="!item.permission" [ngTemplateOutlet]="menuItemInnerTemplate"
+		[ngTemplateOutletContext]="{ item: item, parentItem: parentItem  }"></ng-container>
 	<ng-template *ngIf="item.permission" ngxPermissionsOnly="{{ item.permission }}">
-		<ng-container [ngTemplateOutlet]="menuItemInnerTemplate" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem  }"></ng-container>
+		<ng-container [ngTemplateOutlet]="menuItemInnerTemplate"
+			[ngTemplateOutletContext]="{ item: item, parentItem: parentItem  }"></ng-container>
 	</ng-template>
 </ng-template>
 
 <ng-template #menuItemInnerTemplate let-item="item" let-parentItem="parentItem">
-	<li [attr.aria-haspopup]="true"
-		[attr.data-ktmenu-submenu-toggle]="getItemAttrSubmenuToggle(item)"
+	<li [attr.aria-haspopup]="true" [attr.data-ktmenu-submenu-toggle]="getItemAttrSubmenuToggle(item)"
 		[attr.data-ktmenu-submenu-mode]="item.mode"
 		[attr.data-ktmenu-dropdown-toggle-class]="item['dropdown-toggle-class']" [ngClass]="getItemCssClasses(item)"
 		[ngbTooltip]="item.tooltip" data-placement="right">
@@ -59,7 +62,8 @@
 			<span class="kt-menu__arrow"></span>
 			<div *ngIf="item['custom-class'] === 'kt-menu__item--submenu-fullheight'" class="kt-menu__wrapper">
 				<!-- wrap submenu to full height -->
-				<ng-container [ngTemplateOutlet]="menuSubmenuTemplate" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
+				<ng-container [ngTemplateOutlet]="menuSubmenuTemplate"
+					[ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
 			</div>
 			<!-- normal submenu -->
 			<ng-container *ngIf="item['custom-class'] !== 'kt-menu__item--submenu-fullheight'"

@@ -33,7 +33,11 @@
 
                     <ng-container matColumnDef="file_id">
                         <mat-header-cell *matHeaderCellDef>File</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.file_id}}
+                        <mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="element.file">
+                                <img style="width: 20px;height: 20px;" [src]="showFileInfo(element.file)" /> {{
+                                element.file.name }}
+                            </ng-container>
                         </mat-cell>
                     </ng-container>
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomeworkService } from './homework.service';
 import { CoreModule } from '../../../../core/core.module';
 import { PartialsModule } from '../../../partials/partials.module';
@@ -34,6 +34,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatFileUploadModule
   ],
   exports: [HomeworkListingComponent, HomeworkCreateComponent],
-  providers: [HomeworkService]
+  providers: [HomeworkService, DatePipe]
 })
 export class HomeworkModule { }

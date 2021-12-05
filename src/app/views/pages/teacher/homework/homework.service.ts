@@ -12,6 +12,7 @@ export class HomeworkService {
   }
 
   getHomework(page) {
+    this.token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/homeworks?page=' + page, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -20,6 +21,7 @@ export class HomeworkService {
   }
 
   deleteHomework(id) {
+    this.token = localStorage.getItem('token');
     return this.http.delete(this.endPoint + '/homeworks/' + id, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -28,6 +30,7 @@ export class HomeworkService {
   }
 
   gethomeworkById(id) {
+    this.token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/homeworks/' + id, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -36,6 +39,7 @@ export class HomeworkService {
   }
 
   addhomework(values) {
+    this.token = localStorage.getItem('token');
     return this.http.post(this.endPoint + '/homeworks/', values, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -44,6 +48,7 @@ export class HomeworkService {
   }
 
   updatehomework(id, values) {
+    this.token = localStorage.getItem('token');
     return this.http.put(this.endPoint + '/homeworks/' + id, values, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -52,6 +57,7 @@ export class HomeworkService {
   }
 
   getClasses() {
+    this.token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/classes/', {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -59,7 +65,17 @@ export class HomeworkService {
     });
   }
 
+  getTemplates() {
+    this.token = localStorage.getItem('token');
+    return this.http.get(this.endPoint + '/templates/', {
+      headers: {
+        Authorization: 'Bearer ' + this.token
+      }
+    });
+  }
+
   uploadImage(values) {
+    this.token = localStorage.getItem('token');
     return this.http.post(this.endPoint + '/files/', values, {
       headers: {
         Authorization: 'Bearer ' + this.token

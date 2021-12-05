@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 })
 export class HomeworkListingComponent implements OnInit {
 
-  constructor(private homeworkService: HomeworkService,private router:Router) { }
+  constructor(private homeworkService: HomeworkService, private router: Router) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
-    'sr_no', 'title', 'homework', 'class', 'file_id','youtube_id','created_at','action'
+    'sr_no', 'title', 'homework', 'class', 'file_id', 'youtube_id', 'created_at', 'action'
   ];
   pageData = {
     current_page: 0,
@@ -51,10 +51,10 @@ export class HomeworkListingComponent implements OnInit {
 
   editHomework(homeworkId) {
     console.log(homeworkId)
-     this.router.navigate(['/teacher/homeworks/edit/', homeworkId]);
+    this.router.navigate(['/teacher/homeworks/edit/', homeworkId]);
   }
 
-  
+
 
   deleteHomework(homeworkId) {
     swal({
@@ -79,5 +79,12 @@ export class HomeworkListingComponent implements OnInit {
   onPageChange(event) {
     let page = event.pageIndex + 1;
     this.getHomeworks(page);
+  }
+
+  showFileInfo(file) {
+    let extension = file.system_name.split(".");
+    extension = extension[1];
+    extension = "jpg";
+    return "/assets/media/files/" + extension + ".svg";
   }
 }
