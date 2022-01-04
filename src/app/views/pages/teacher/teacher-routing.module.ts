@@ -5,6 +5,7 @@ import { HomeworkCreateComponent } from './homework/homework-create/homework-cre
 import { HomeworkListingComponent } from './homework/homework-listing/homework-listing.component';
 import { NoticeCreateComponent } from './notice/notice-create/notice-create.component';
 import { NoticeListingComponent } from './notice/notice-listing/notice.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 
@@ -25,8 +26,8 @@ const routes: Routes = [
         component: NoticeCreateComponent,
     },
     {
-        path:'homeworks',
-        component:HomeworkListingComponent
+        path: 'homeworks',
+        component: HomeworkListingComponent
     },
     {
         path: 'homeworks/create',
@@ -35,6 +36,10 @@ const routes: Routes = [
     {
         path: 'homeworks/edit/:id',
         component: HomeworkCreateComponent,
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
     },
 
 ];

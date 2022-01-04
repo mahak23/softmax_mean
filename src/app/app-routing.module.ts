@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseComponent } from './views/theme/base/base.component';
 import { ErrorPageComponent } from './views/theme/content/error-page/error-page.component';
 // Auth
-import { AuthGuard } from './core/auth';
+import { UserAuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
 	{ path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule) },
@@ -13,7 +13,7 @@ const routes: Routes = [
 	{
 		path: '',
 		component: BaseComponent,
-		// canActivate: [AuthGuard],
+		canActivate: [UserAuthGuard],
 		children: [
 			{
 				path: 'dashboard',
@@ -34,8 +34,8 @@ const routes: Routes = [
 				},
 			},
 			{ path: 'error/:type', component: ErrorPageComponent },
-			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-			{ path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+			{ path: '', redirectTo: 'teacher/dashboard', pathMatch: 'full' },
+			{ path: '**', redirectTo: 'teacher/dashboard', pathMatch: 'full' },
 		],
 	},
 

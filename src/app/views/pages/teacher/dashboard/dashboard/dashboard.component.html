@@ -1,42 +1,44 @@
 <div class="row">
-    <div class="col-xl-3">
+    <div class="col-xl-4" (click)="redirectToList('homeworks')" style="margin: 20px;
+    width: 200px;
+    height: 170px;
+    box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);background-color: rgb(192, 209, 240);">
         <div class="row row-full-height">
             <div class="col-sm-12 col-md-12 col-lg-6">
-                <kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
-                    <kt-portlet-body [class]="'kt-portlet__body--fluid'">
-                        <div class="kt-widget26">
-                            <div class="kt-widget26__content">
-                                <span class="kt-widget26__number">1</span>
-                                <span class="kt-widget26__desc">Homework</span>
-                            </div>
-                            <div class="kt-widget26__chart" style="height:100px; width: 230px;">
-                                <canvas ktSparklineChart [options]="options" id="kt_chart_quick_stats_1"></canvas>
-                            </div>
-                        </div>
-                    </kt-portlet-body>
-                </kt-portlet>
+                <!-- <kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+                    <kt-portlet-body [class]="'kt-portlet__body--fluid'"> -->
+                <div class="kt-widget26">
+                    <div class="kt-widget26__content">
+                        <span class="kt-widget26__number">{{homeworkTotal}}</span>
+                        <span class="kt-widget26__desc">Homework</span>
+                    </div>
+
+                </div>
+                <!-- </kt-portlet-body>
+                </kt-portlet> -->
 
                 <div class="kt-space-20"></div>
 
             </div>
         </div>
     </div>
-    <div class="col-xl-3">
+    <div class="col-xl-4" (click)="redirectToList('notices')" style="margin: 20px;
+    width: 200px;
+    height: 170px;
+    box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.75);background-color:rgb(245, 214, 204)">
         <div class="row row-full-height">
             <div class="col-sm-12 col-md-12 col-lg-6">
-                <kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
-                    <kt-portlet-body [class]="'kt-portlet__body--fluid'">
-                        <div class="kt-widget26">
-                            <div class="kt-widget26__content">
-                                <span class="kt-widget26__number">2</span>
-                                <span class="kt-widget26__desc">Notices</span>
-                            </div>
-                            <div class="kt-widget26__chart" style="height:100px; width: 230px;">
-                                <canvas ktSparklineChart [options]="options" id="kt_chart_quick_stats_1"></canvas>
-                            </div>
-                        </div>
-                    </kt-portlet-body>
-                </kt-portlet>
+                <!-- <kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+                    <kt-portlet-body [class]="'kt-portlet__body--fluid'"> -->
+                <div class="kt-widget26">
+                    <div class="kt-widget26__content">
+                        <span class="kt-widget26__number">{{noticeTotal}}</span>
+                        <span class="kt-widget26__desc">Notices</span>
+                    </div>
+
+                </div>
+                <!-- </kt-portlet-body>
+                </kt-portlet> -->
 
                 <div class="kt-space-20"></div>
 

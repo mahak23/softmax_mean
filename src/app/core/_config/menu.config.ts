@@ -17,6 +17,14 @@ export class MenuConfig {
 					bullet: 'dot',
 				},
 				{
+					title: 'Profile',
+					root: true,
+					icon: 'flaticon2-architecture-and-city',
+					page: '/teacher/profile',
+					translate: 'Profile',
+					bullet: 'dot',
+				},
+				{
 					title: 'Notice',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
@@ -32,6 +40,7 @@ export class MenuConfig {
 					translate: 'Manage Homeworks',
 					bullet: 'dot',
 				},
+
 			]
 		},
 	};

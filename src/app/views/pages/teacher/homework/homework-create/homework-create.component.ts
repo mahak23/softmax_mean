@@ -98,7 +98,7 @@ export class HomeworkCreateComponent implements OnInit {
       );
       return;
     }
-
+    console.log(this.file, "dfghjkl")
     let data = this.homeworkForm.value;
     data.file_id = this.file.id;
     data.date = this.datePipe.transform(data.date, "y-MM-d");

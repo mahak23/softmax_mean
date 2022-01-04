@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 	user: any;
-
+	defaultImg = "/assets/media/users/default.jpg"
 	@Input() avatar = false;
 	@Input() greeting = true;
 	@Input() badge = true;

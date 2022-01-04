@@ -8,9 +8,10 @@ import { TeacherRoutingModule } from './teacher-routing.module';
 import { NoticeModule } from './notice/notice.module';
 import { HomeworkModule } from './homework/homework.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ProfileComponent],
   imports: [
     CommonModule,
     CoreModule,

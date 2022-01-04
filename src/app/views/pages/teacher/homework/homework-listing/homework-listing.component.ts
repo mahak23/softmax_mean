@@ -3,6 +3,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { HomeworkService } from '../homework.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { FileMimeType } from '@taldor-ltd/angular-file-viewer';
 @Component({
   selector: 'kt-homework-listing',
   templateUrl: './homework-listing.component.html',
@@ -86,5 +87,10 @@ export class HomeworkListingComponent implements OnInit {
     extension = extension[1];
     extension = "jpg";
     return "/assets/media/files/" + extension + ".svg";
+  }
+
+  previewFile(file) {
+    console.log(file, "cfghjk")
+    //window.open(file.file_url, "_blank");
   }
 }
