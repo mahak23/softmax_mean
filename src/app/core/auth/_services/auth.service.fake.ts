@@ -21,12 +21,13 @@ const API_ROLES_URL = 'api/roles';
 
 @Injectable()
 export class AuthService {
+    public endPoint = environment.api_url;
     constructor(private http: HttpClient,
         private httpUtils: HttpUtilsService) { }
 
     // Authentication/Authorization
     login(data): Observable<any> {
-        return this.http.post('http://localhost:8000/api/login', data);
+        return this.http.post(this.endPoint + '/login', data);
     }
 
     register(user: User): Observable<any> {

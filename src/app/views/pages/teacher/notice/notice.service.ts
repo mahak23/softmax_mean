@@ -28,24 +28,24 @@ export class NoticeService {
     });
   }
 
-  addNotice(values){
-    return this.http.post(this.endPoint + '/notices/',values, {
+  addNotice(values) {
+    return this.http.post(this.endPoint + '/notices', values, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
     });
   }
 
-  getNoticeById(noticeId){
-    return this.http.get(this.endPoint + '/notices/'+noticeId, {
+  getNoticeById(noticeId) {
+    return this.http.get(this.endPoint + '/notices/' + noticeId, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
     });
   }
 
-  updateNotice(noticeId, values){
-    return this.http.put(this.endPoint + '/notices/'+noticeId, values, {
+  updateNotice(noticeId, values) {
+    return this.http.put(this.endPoint + '/notices/' + noticeId, values, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }

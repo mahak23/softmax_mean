@@ -9,14 +9,12 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import { HomeworkListingComponent } from './homework-listing/homework-listing.component';
 import { HomeworkCreateComponent } from './homework-create/homework-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFileViewerModule } from '@taldor-ltd/angular-file-viewer';
 
 
 @NgModule({
   declarations: [HomeworkListingComponent, HomeworkCreateComponent],
   imports: [
     CommonModule,
-    AngularFileViewerModule,
     CoreModule,
     PartialsModule,
     MatTableModule,
