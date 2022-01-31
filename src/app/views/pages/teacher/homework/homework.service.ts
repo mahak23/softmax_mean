@@ -58,7 +58,7 @@ export class HomeworkService {
 
   getClasses() {
     this.token = localStorage.getItem('token');
-    return this.http.get(this.endPoint + '/classes/', {
+    return this.http.get(this.endPoint + '/classes', {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
@@ -67,7 +67,7 @@ export class HomeworkService {
 
   getTemplates() {
     this.token = localStorage.getItem('token');
-    return this.http.get(this.endPoint + '/templates/', {
+    return this.http.get(this.endPoint + '/templates', {
       headers: {
         Authorization: 'Bearer ' + this.token
       }

@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ElearningListComponent } from './elearning/elearning-list/elearning-list.component';
 import { HomeworkCreateComponent } from './homework/homework-create/homework-create.component';
 import { HomeworkListingComponent } from './homework/homework-listing/homework-listing.component';
 import { NoticeCreateComponent } from './notice/notice-create/notice-create.component';
@@ -40,6 +41,10 @@ const routes: Routes = [
     {
         path: 'profile',
         component: ProfileComponent,
+    },
+    {
+        path: 'elearning',
+        component: ElearningListComponent,
     },
 
 ];

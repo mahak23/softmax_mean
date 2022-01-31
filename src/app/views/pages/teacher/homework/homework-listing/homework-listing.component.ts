@@ -13,7 +13,7 @@ export class HomeworkListingComponent implements OnInit {
   constructor(private homeworkService: HomeworkService, private router: Router) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
-    'sr_no', 'title', 'homework', 'class', 'file_id', 'youtube_id', 'created_at', 'action'
+    'sr_no', 'title', 'homework', 'class', 'youtube_id', 'created_at', 'action'
   ];
   pageData = {
     current_page: 0,

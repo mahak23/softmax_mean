@@ -9,6 +9,7 @@ import { NoticeModule } from './notice/notice.module';
 import { HomeworkModule } from './homework/homework.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileComponent } from './profile/profile.component';
+import { ElearningModule } from './elearning/elearning.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -19,7 +20,8 @@ import { ProfileComponent } from './profile/profile.component';
     TeacherRoutingModule,
     NoticeModule,
     HomeworkModule,
-    DashboardModule
+    DashboardModule,
+    ElearningModule
   ]
 })
 export class TeacherModule { }

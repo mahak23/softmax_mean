@@ -40,6 +40,14 @@ export class MenuConfig {
 					translate: 'Manage Homeworks',
 					bullet: 'dot',
 				},
+				{
+					title: 'Elearning',
+					root: true,
+					icon: 'flaticon2-architecture-and-city',
+					page: '/teacher/elearning',
+					translate: 'Manage Elearnings',
+					bullet: 'dot',
+				},
 
 			]
 		},

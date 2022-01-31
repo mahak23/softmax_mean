@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+  public getUserData: any = ""
+  public defaultImg = "/assets/media/users/default.jpg"
   constructor() { }
 
   ngOnInit() {
+    this.getUserData = JSON.parse(localStorage.getItem('user'));
+    console.log(this.getUserData)
   }
 
 }
