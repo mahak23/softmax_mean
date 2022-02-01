@@ -77,8 +77,11 @@ export class HomeworkCreateComponent implements OnInit {
         date: data.date,
         youtube_id: data.youtube_id,
       });
-      this.file = data.file;
-      this.fileUploaded = true;
+
+      if (data.file) {
+        this.file = data.file;
+        this.fileUploaded = true;
+      }
     }, (error) => {
       // Validation
       if (error.status == 422) {
@@ -98,11 +101,13 @@ export class HomeworkCreateComponent implements OnInit {
       );
       return;
     }
-    console.log(this.file, "dfghjkl")
+
     let data = this.homeworkForm.value;
-    data.file_id = this.file.id;
-    data.date = this.datePipe.transform(data.date, "y-MM-d");
-    console.log(data);
+    data.date = this.datePipe.transform(data.date, "yyyy-MM-dd");
+
+    if (this.file) {
+      data.file_id = this.file.id;
+    }
 
     if (!this.homeworkId) {
       this.homeworkService

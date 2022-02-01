@@ -40,7 +40,7 @@ export class HomeworkService {
 
   addhomework(values) {
     this.token = localStorage.getItem('token');
-    return this.http.post(this.endPoint + '/homeworks/', values, {
+    return this.http.post(this.endPoint + '/homeworks', values, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
@@ -76,7 +76,7 @@ export class HomeworkService {
 
   uploadImage(values) {
     this.token = localStorage.getItem('token');
-    return this.http.post(this.endPoint + '/files/', values, {
+    return this.http.post(this.endPoint + '/files', values, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
