@@ -48,6 +48,14 @@ export class MenuConfig {
 					translate: 'Manage Elearnings',
 					bullet: 'dot',
 				},
+				{
+					title: 'Attendence',
+					root: true,
+					icon: 'flaticon2-architecture-and-city',
+					page: '/teacher/attendence',
+					translate: 'Manage Attendence',
+					bullet: 'dot',
+				},
 
 			]
 		},

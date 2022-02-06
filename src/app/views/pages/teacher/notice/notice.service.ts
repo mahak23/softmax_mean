@@ -13,6 +13,7 @@ export class NoticeService {
   }
 
   getNotices(page) {
+    this.token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/notices?page=' + page, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -21,6 +22,7 @@ export class NoticeService {
   }
 
   deleteNotice(id) {
+    this.token = localStorage.getItem('token');
     return this.http.delete(this.endPoint + '/notices/' + id, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -29,6 +31,7 @@ export class NoticeService {
   }
 
   addNotice(values) {
+    this.token = localStorage.getItem('token');
     return this.http.post(this.endPoint + '/notices', values, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -37,6 +40,7 @@ export class NoticeService {
   }
 
   getNoticeById(noticeId) {
+    this.token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/notices/' + noticeId, {
       headers: {
         Authorization: 'Bearer ' + this.token
@@ -45,6 +49,7 @@ export class NoticeService {
   }
 
   updateNotice(noticeId, values) {
+    this.token = localStorage.getItem('token');
     return this.http.put(this.endPoint + '/notices/' + noticeId, values, {
       headers: {
         Authorization: 'Bearer ' + this.token

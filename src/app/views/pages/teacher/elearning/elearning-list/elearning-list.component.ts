@@ -38,11 +38,11 @@ export class ElearningListComponent implements OnInit {
 
   getElearnings(page = 1) {
     this.elearningService.getElearningList(page).subscribe((response: any) => {
-      this.dataSource.data = response.data.homeworks.data;
+      this.dataSource.data = response.data.e_learnings.data;
       this.pageData = {
-        per_page: response.data.elearning.per_page,
-        current_page: response.data.elearning.current_page - 1,
-        total: response.data.elearning.total,
+        per_page: response.data.e_learnings.per_page,
+        current_page: response.data.e_learnings.current_page - 1,
+        total: response.data.e_learnings.total,
       };
       console.log(this.pageData, "Page data");
     }, (error) => {

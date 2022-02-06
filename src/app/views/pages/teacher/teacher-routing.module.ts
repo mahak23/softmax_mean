@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AttendenceListComponent } from './attendence/attendence-list/attendence-list.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { ElearningListComponent } from './elearning/elearning-list/elearning-list.component';
 import { HomeworkCreateComponent } from './homework/homework-create/homework-create.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
     {
         path: 'elearning',
         component: ElearningListComponent,
+    },
+    {
+        path: 'attendence',
+        component: AttendenceListComponent,
     },
 
 ];

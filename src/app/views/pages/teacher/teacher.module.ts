@@ -10,7 +10,7 @@ import { HomeworkModule } from './homework/homework.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ElearningModule } from './elearning/elearning.module';
-
+import { AttendenceModule } from './attendence/attendence.module';
 @NgModule({
   declarations: [ProfileComponent],
   imports: [
@@ -21,7 +21,8 @@ import { ElearningModule } from './elearning/elearning.module';
     NoticeModule,
     HomeworkModule,
     DashboardModule,
-    ElearningModule
+    ElearningModule,
+    AttendenceModule
   ]
 })
 export class TeacherModule { }

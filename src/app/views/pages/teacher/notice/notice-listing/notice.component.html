@@ -9,7 +9,7 @@
                 </ng-container>
             </kt-portlet-header>
             <kt-portlet-body [class]="'kt-portlet__body--fit'">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="dataSource" style=" overflow-x: scroll;">
                     <ng-container matColumnDef="sr_no">
                         <mat-header-cell *matHeaderCellDef> Sr. No</mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>

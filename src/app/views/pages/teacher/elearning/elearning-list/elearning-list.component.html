@@ -27,7 +27,7 @@
 
                     <ng-container matColumnDef="class">
                         <mat-header-cell *matHeaderCellDef>Class</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.class.title}}
+                        <mat-cell *matCellDef="let element"> {{element.master_class.title}}
                         </mat-cell>
                     </ng-container>
 
@@ -36,7 +36,7 @@
                     <ng-container matColumnDef="play">
                         <mat-header-cell *matHeaderCellDef>Play</mat-header-cell>
                         <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" matTooltip="Play">
-                                <mat-icon>Play</mat-icon>
+                                <mat-icon>play_for_work</mat-icon>
                             </button>
                         </mat-cell>
                     </ng-container>
@@ -46,14 +46,8 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <!-- <button (click)="editHomework(element.id)" mat-icon-button color="primary"
-                                matTooltip="Edit Homework">
-                                <mat-icon>create</mat-icon>
-                            </button>&nbsp;
-                            <button mat-icon-button color="warn" matTooltip="Delete Homework" type="button"
-                                (click)="deleteHomework(element.id)">
-                                <mat-icon>delete</mat-icon>
-                            </button> -->
+                            <mat-slide-toggle>
+                            </mat-slide-toggle>
                         </mat-cell>
                     </ng-container>
 
