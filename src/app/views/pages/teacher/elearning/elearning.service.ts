@@ -21,5 +21,12 @@ export class ElearningService {
     });
   }
 
-
+  updateElearning(id) {
+    this.token = localStorage.getItem('token');
+    return this.http.patch(this.endPoint + '/e-learnings/' + id, null, {
+      headers: {
+        Authorization: 'Bearer ' + this.token
+      }
+    });
+  }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ProfileService } from './profile.service';
 
 @Component({
   selector: 'kt-profile',
@@ -7,13 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  public getUserData: any = ""
+  public getUserData: any
   public defaultImg = "/assets/media/users/default.jpg"
-  constructor() { }
+  constructor(private profileService: ProfileService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.getUserData = JSON.parse(localStorage.getItem('user'));
-    console.log(this.getUserData)
+    this.getProfile();
+  }
+
+  getProfile() {
+    this.profileService.getProfile().subscribe((response: any) => {
+      this.getUserData = response.data.user;
+      this.changeDetectorRef.detectChanges();
+
+      console.log(this.getUserData, "Page data");
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

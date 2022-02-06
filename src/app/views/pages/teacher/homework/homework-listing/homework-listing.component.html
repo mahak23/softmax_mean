@@ -41,7 +41,8 @@
 
                     <ng-container matColumnDef="youtube_id">
                         <mat-header-cell *matHeaderCellDef>Youtube</mat-header-cell>
-                        <mat-cell *matCellDef="let element"><button mat-icon-button color="primary" matTooltip="Play">
+                        <mat-cell *matCellDef="let element"><button (click)="openDialog(element)" mat-icon-button
+                                color="primary" matTooltip="Play">
                                 <mat-icon>play_for_work</mat-icon>
                             </button>
                         </mat-cell>

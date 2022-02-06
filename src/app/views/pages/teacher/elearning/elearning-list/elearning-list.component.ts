@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ElearningService } from '../elearning.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { VideoModalComponent } from '../../video-modal/video-modal.component';
 
 @Component({
   selector: 'kt-elearning-list',
@@ -11,11 +12,12 @@ import { Router } from '@angular/router';
 })
 export class ElearningListComponent implements OnInit {
 
-  constructor(private elearningService: ElearningService, private router: Router) { }
+  constructor(public dialog: MatDialog, private elearningService: ElearningService, private router: Router) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
     'sr_no', 'title', 'subject', 'class', 'play', 'action'
   ];
+
   pageData = {
     current_page: 0,
     total: 0,
@@ -36,6 +38,16 @@ export class ElearningListComponent implements OnInit {
     this.getElearnings(1);
   }
 
+  openDialog(data): void {
+    const dialogRef = this.dialog.open(VideoModalComponent, {
+      width: '800px',
+      height: '550px',
+      data: { data: data },
+    });
+
+    dialogRef.afterClosed().subscribe(result => { });
+  }
+
   getElearnings(page = 1) {
     this.elearningService.getElearningList(page).subscribe((response: any) => {
       this.dataSource.data = response.data.e_learnings.data;
@@ -50,14 +62,16 @@ export class ElearningListComponent implements OnInit {
     });
   }
 
-
+  updateElearning(element) {
+    this.elearningService.updateElearning(element.id).subscribe((response: any) => {
+      this.getElearnings();
+    }, (error) => {
+      console.log(error);
+    });
+  }
 
   onPageChange(event) {
     let page = event.pageIndex + 1;
     this.getElearnings(page);
   }
-
-
-
-
 }

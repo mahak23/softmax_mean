@@ -11,8 +11,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ElearningModule } from './elearning/elearning.module';
 import { AttendenceModule } from './attendence/attendence.module';
+import { VideoModalComponent } from './video-modal/video-modal.component';
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, VideoModalComponent],
   imports: [
     CommonModule,
     CoreModule,
@@ -23,6 +24,8 @@ import { AttendenceModule } from './attendence/attendence.module';
     DashboardModule,
     ElearningModule,
     AttendenceModule
-  ]
+  ],
+  entryComponents: [VideoModalComponent],
+  exports: [VideoModalComponent]
 })
 export class TeacherModule { }

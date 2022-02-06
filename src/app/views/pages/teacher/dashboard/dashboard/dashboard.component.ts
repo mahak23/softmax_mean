@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeworkService } from '../../homework/homework.service';
-import { NoticeService } from '../../notice/notice.service';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'kt-dashboard',
@@ -11,29 +10,22 @@ import { NoticeService } from '../../notice/notice.service';
 export class DashboardComponent implements OnInit {
   public homeworkTotal = 0;
   public noticeTotal = 0
-  constructor(private noticeService: NoticeService, private router: Router, private homeworkService: HomeworkService) { }
+  constructor(private router: Router, private dashboardService: DashboardService) { }
 
   ngOnInit() {
-    this.getHomeworks();
-    this.getNotices(1);
+    this.getStats();
+
   }
-  getHomeworks(page = 1) {
-    this.homeworkService.getHomework(page).subscribe((response: any) => {
-      this.homeworkTotal = response.data.homeworks.total;
-      console.log(this.homeworkTotal)
+  getStats() {
+    this.dashboardService.getStats().subscribe((response: any) => {
+      this.homeworkTotal = response.data.homeworks;
+      this.noticeTotal = response.data.notices;
     }, (error) => {
       console.log(error);
     });
   }
 
-  getNotices(page = 1) {
-    this.noticeService.getNotices(page).subscribe((response: any) => {
-      this.noticeTotal = response.data.notices.total;
-      console.log(this.noticeTotal)
-    }, (error) => {
-      console.log(error);
-    });
-  }
+
 
   redirectToList(param) {
     // console.log(param, "cfghj")

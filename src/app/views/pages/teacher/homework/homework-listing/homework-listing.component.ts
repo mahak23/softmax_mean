@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { HomeworkService } from '../homework.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { VideoModalComponent } from '../../video-modal/video-modal.component';
 @Component({
   selector: 'kt-homework-listing',
   templateUrl: './homework-listing.component.html',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeworkListingComponent implements OnInit {
 
-  constructor(private homeworkService: HomeworkService, private router: Router) { }
+  constructor(public dialog: MatDialog, private homeworkService: HomeworkService, private router: Router) { }
   dataSource = new MatTableDataSource<[]>();
   displayedColumns: string[] = [
     'sr_no', 'title', 'homework', 'class', 'youtube_id', 'created_at', 'action'
@@ -33,6 +34,16 @@ export class HomeworkListingComponent implements OnInit {
 
   ngOnInit() {
     this.getHomeworks(1);
+  }
+
+  openDialog(data): void {
+    const dialogRef = this.dialog.open(VideoModalComponent, {
+      width: '800px',
+      height: '550px',
+      data: { youtube_id: data.youtube_id, is_youtube: true },
+    });
+
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
   getHomeworks(page = 1) {

@@ -35,7 +35,8 @@
 
                     <ng-container matColumnDef="play">
                         <mat-header-cell *matHeaderCellDef>Play</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" matTooltip="Play">
+                        <mat-cell *matCellDef="let element"> <button (click)="openDialog(element)" mat-icon-button
+                                color="primary" matTooltip="Play">
                                 <mat-icon>play_for_work</mat-icon>
                             </button>
                         </mat-cell>
@@ -46,7 +47,7 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <mat-slide-toggle>
+                            <mat-slide-toggle [checked]="element.is_visible == 1" (change)="updateElearning(element)">
                             </mat-slide-toggle>
                         </mat-cell>
                     </ng-container>
