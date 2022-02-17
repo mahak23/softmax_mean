@@ -6,7 +6,7 @@ import { MatButtonModule, MatCheckboxModule, MatIconModule, MatInputModule, MatP
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AttendenceListComponent } from './attendence-list/attendence-list.component';
-
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import { AttendenceListComponent } from './attendence-list/attendence-list.compo
     ReactiveFormsModule,
     MatCheckboxModule,
     MatInputModule,
+    MatSelectModule
   ]
 })
 export class AttendenceModule { }
