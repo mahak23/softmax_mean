@@ -1,5 +1,8 @@
+// ye save attendance ke liye h attendance list alg se bnega ek jisme saved attendance aajengi
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 import { AttendenceService } from '../attendence.service';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
@@ -20,6 +23,7 @@ export class AttendenceListComponent implements OnInit {
   displayedColumns: string[] = [
     'sr_no', 'name', 'father_name'
   ];
+  selection = new SelectionModel(true, []);
 
   pageData = {
     current_page: 0,
@@ -40,13 +44,14 @@ export class AttendenceListComponent implements OnInit {
   ngOnInit() {
     this.getClassList();
   }
+
   setAbsent(record) {
     console.log(record)
   }
+
   getClassList() {
     this.attendenceService.getClassList().subscribe((response: any) => {
       this.clsdata = response.data.classes;
-      console.log(this.clsdata, "cls data");
     }, (error) => {
       console.log(error);
     });
@@ -56,25 +61,23 @@ export class AttendenceListComponent implements OnInit {
     if (cls) {
       this.clsId = cls
       this.getSubjectList(cls)
+      this.getStudent();
     }
   }
 
   changesubject(subject) {
     if (subject) {
-      this.subId = subject
-      this.getStudent()
+      this.subId = subject;
     }
   }
-  getSubjectList(cls) {
 
+  getSubjectList(cls) {
     this.attendenceService.getSubjectList(cls).subscribe((response: any) => {
       this.subjectdata = response.data.subjects;
-      console.log(this.subjectdata, "subjectdata data");
     }, (error) => {
       console.log(error);
     });
   }
-
 
   getStudent() {
     this.attendenceService.getStudentList(this.clsId).subscribe((response: any) => {
@@ -90,17 +93,23 @@ export class AttendenceListComponent implements OnInit {
     });
   }
 
-  markAbsent(element) {
+  markAbsent() {
     let data = {
-      "student_ids": [1, 3],
+      "student_ids": this.selection.selected,
       "class_id": this.clsId,
-      "subject_id": this.subId,
+      "subject_id": this.subId || "",
       "date": this.datepipe.transform(new Date(), 'yyyy-MM-dd')
     }
+
     this.attendenceService.updateAttendence(data).subscribe((response: any) => {
-      this.getStudent();
+      // clear the selected students
+      this.selection.clear();
+
+      // redirect the teacher to attendance listing page (add krna pdega vo)
+
+      console.log(response);
     }, (error) => {
-      console.log(error);
+      // console.log(error);
     });
   }
 

@@ -27,13 +27,14 @@
                 </div>
                 <mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="sr_no">
-                        <mat-header-cell *matHeaderCellDef> Roll. No</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.id}}<span class="example-list-section ml-2">
-                                <mat-checkbox class="example-margin" [checked]="allTrue"
-                                    (change)="setAbsent($event.checked)">
-
+                        <mat-header-cell *matHeaderCellDef>Roll. No</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.id}}<span class="example-list-section ml-2">
+                                <mat-checkbox class="example-margin" (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(element.id) : null"
+                                    [checked]="selection.isSelected(element.id)">
                                 </mat-checkbox>
-                            </span> </mat-cell>
+                            </span>
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="name">
@@ -55,7 +56,6 @@
                 <div class="kt-portlet__foot">
                     <div class="kt-form__actions kt-form__actions mb-4 mt-4 ml-4">
                         <button mat-raised-button color="primary" (click)="markAbsent()">Mark Absent</button>&nbsp;
-
                     </div>
                 </div>
             </kt-portlet-body>

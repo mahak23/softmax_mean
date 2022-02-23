@@ -23,6 +23,7 @@ export class AttendenceService {
       }
     });
   }
+
   getClassList() {
     this.token = localStorage.getItem('token');
     return this.http.get(this.endPoint + '/classes', {
@@ -43,10 +44,9 @@ export class AttendenceService {
     });
   }
 
-
-  updateAttendence(id) {
+  updateAttendence(data) {
     this.token = localStorage.getItem('token');
-    return this.http.patch(this.endPoint + '/attendence/' + id, null, {
+    return this.http.post(this.endPoint + '/attendance', data, {
       headers: {
         Authorization: 'Bearer ' + this.token
       }
